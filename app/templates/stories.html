@@ -5,7 +5,7 @@
     <div class="grid cards">
       {% for s in stories %}
       <article class="card">
-        <img src="{{ story.cover }}" alt="{{ story.title }}" class="card-cover" style="max-height:360px">
+        <img src="{{ s.cover }}" alt="{{ s.title }}" class="card-cover">
         <h3 style="margin:.6rem 0">{{ s.title }}</h3>
         <p class="small">{{ s.short }}</p>
         <progress max="{{ s.goal_amount }}" value="{{ s.raised_amount }}"></progress>
