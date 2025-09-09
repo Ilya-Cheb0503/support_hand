@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or 'Рука помощи' }}</title>
+  <meta name="description" content="{{ description or 'Благотворительный фонд «Рука помощи». Помощь детям и семьям в Белгородской области.' }}">
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23FF5A5F'/></svg>">
+  {% if config.analytics.ym_id %}
+  <!-- Yandex.Metrika placeholder -->
+  {% endif %}
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <div class="header-logo"><a href="/">Рука&nbsp;помощи</a></div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="/about">О фонде</a>
+        <a href="/stories">Истории помощи</a>
+        <a href="/donate">Как помочь</a>
+        <a href="/contacts">Контакты</a>
+      </div>
+      <div><a class="btn" href="/donate">Пожертвовать</a></div>
+    </nav>
+  </div>
+  {% block content %}{% endblock %}
+  <footer>
+    <div class="container" style="display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between">
+      <div>
+        <div><strong>{{ config.org_name }}</strong></div>
+        <div class="small">Регион: {{ config.region }}</div>
+        <div class="small"><a href="{{ config.vk_url }}" target="_blank" rel="noopener">Мы во ВКонтакте</a></div>
+      </div>
+      <div class="small">
+        <div><a href="/documents">Документы и отчёты</a></div>
+        <div><a href="/policy">Политика конфиденциальности</a></div>
+        <div><a href="/offer">Публичная оферта пожертвования</a></div>
+      </div>
+      <div class="small">
+        <div>Тел.: {{ config.contacts.phone }}</div>
+        <div>Email: <a href="mailto:{{ config.contacts.email }}">{{ config.contacts.email }}</a></div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

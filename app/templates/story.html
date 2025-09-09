@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="container hero">
+    <a href="/stories">← Ко всем историям</a>
+    <h1>{{ story.title }}</h1>
+    <img src="{{ story.cover }}" alt="{{ story.title }}" style="width:100%;max-height:360px;object-fit:cover;border-radius:16px">
+    <p style="margin-top:10px">{{ story.body }}</p>
+    <div class="card">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center">
+        <div style="min-width:260px;flex:1">
+          <progress max="{{ story.goal_amount }}" value="{{ story.raised_amount }}"></progress>
+          <div class="small">{{ '{:,.0f}'.format(story.raised_amount).replace(',', ' ') }} / {{ '{:,.0f}'.format(story.goal_amount).replace(',', ' ') }} ₽</div>
+          <div class="small">Статус: {{ story.status }}</div>
+        </div>
+        <div>
+          <a class="btn" href="/donate?purpose={{ story.donation_target | urlencode }}">Пожертвовать на эту историю</a>
+        </div>
+      </div>
+    </div>
+    {% if story.docs %}
+    <div class="card">
+      <h3>Отчёты и документы</h3>
+      <ul>
+        {% for d in story.docs %}
+        <li><a href="{{ d }}" target="_blank" rel="noopener">Скачать документ</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </section>
+{% endblock %}

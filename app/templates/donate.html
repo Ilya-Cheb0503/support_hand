@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="container hero">
+    <h1>Как помочь</h1>
+    <p>Вы можете пожертвовать любым удобным способом. Для быстрого перевода используйте QR‑код или скопируйте реквизиты.</p>
+    {% if qr_data_url %}
+      <div class="card"><img src="{{ qr_data_url }}" alt="QR для перевода" style="width:220px;height:220px"></div>
+    {% endif %}
+    <div class="card">
+      <h3>Реквизиты для пожертвований</h3>
+      <div class="small">Получатель: {{ config.bank.beneficiary }}</div>
+      <div class="small">ИНН: {{ config.bank.inn }} | КПП: {{ config.bank.kpp }}</div>
+      <div class="small">Р/с: {{ config.bank.account }}</div>
+      <div class="small">Банк: {{ config.bank.bank_name }} | БИК: {{ config.bank.bik }}</div>
+      <div class="small">К/с: {{ config.bank.correspondent }}</div>
+      <div class="small">Назначение платежа: <em>{{ purpose or config.bank.purpose }}</em></div>
+      <p class="small">Нажмите, чтобы скопировать р/с: <a href="#" onclick="navigator.clipboard.writeText('{{ config.bank.account }}'); alert('Скопировано'); return false;">{{ config.bank.account }}</a></p>
+      <a class="btn secondary" href="{{ config.docs.annual_report_pdf }}" target="_blank">Смотреть отчёт</a>
+    </div>
+  </section>
+{% endblock %}

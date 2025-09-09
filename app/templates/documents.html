@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="container hero">
+    <h1>Документы и отчёты</h1>
+    <div class="card">
+      <ul>
+        <li><a href="{{ config.docs.charter_pdf }}" target="_blank">Устав фонда (PDF)</a></li>
+        <li><a href="{{ config.docs.annual_report_pdf }}" target="_blank">Годовой отчёт (PDF)</a></li>
+      </ul>
+    </div>
+  </section>
+{% endblock %}

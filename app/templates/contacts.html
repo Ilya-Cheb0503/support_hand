@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="container hero">
+    <h1>Контакты</h1>
+    <div class="card">
+      <p><strong>Тел.:</strong> {{ config.contacts.phone }}<br>
+      <strong>Email:</strong> <a href="mailto:{{ config.contacts.email }}">{{ config.contacts.email }}</a><br>
+      <strong>Адрес:</strong> {{ config.contacts.address }}</p>
+    </div>
+    <div class="card">
+      <h3>Написать нам</h3>
+      <form class="form" method="post" action="/contacts">
+        <label>Имя</label>
+        <input name="name" required>
+        <label>Email или телефон</label>
+        <input name="contact" required>
+        <label>Сообщение</label>
+        <textarea name="message" rows="5" required></textarea>
+        <label style="display:flex;gap:8px;align-items:center">
+          <input type="checkbox" required> <span>Согласен на обработку персональных данных</span>
+        </label>
+        <button class="btn" type="submit">Отправить</button>
+      </form>
+      {% if submitted %}<p class="small">Спасибо! Мы получили ваше сообщение.</p>{% endif %}
+    </div>
+  </section>
+{% endblock %}
