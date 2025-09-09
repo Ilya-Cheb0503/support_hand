@@ -1,22 +1,122 @@
-/* Минимализм: базовая типографика и сетка */
-:root{--accent:#FF5A5F;--accent2:#FFD166;--text:#1A202C;--muted:#4A5568;--bg:#FFF8F3}
+/* === ПАЛИТРА ЦВЕТОВ === */
+
+:root{
+--accent:#FF5A5F;
+--accent2:#FFD166;
+--text:#1A202C;
+--muted:#4A5568;
+--bg:#FFF8F3
+}
+
+/* === СБРОС И ОСНОВА === */
 *{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;line-height:1.6;color:var(--text);background:var(--bg)}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;
+  line-height:1.6;
+  color:var(--text);
+  background:var(--bg);
+  -webkit-text-size-adjust:100%;
+}
+
+img{max-width:100%;height:auto;display:block}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
+
 .container{max-width:1100px;margin:0 auto;padding:16px}
-.nav{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 0}
-.nav a{font-weight:600}
-.btn{display:inline-block;padding:12px 18px;border-radius:14px;background:var(--accent);color:#fff;font-weight:700}
-.btn.secondary{background:var(--accent2);color:#222}
-.hero{padding:48px 0;display:grid;gap:12px}
+
+/* === НАВИГАЦИЯ === */
+.nav{
+  display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 0
+}
+.nav a{font-weight:600; padding:6px 8px; border-radius:10px}
+.nav a:active{background:#eaf2ff}
+
+/* === ТЕКСТ И КНОПКИ === */
+h1{margin:.2rem 0;font-weight:800; font-size:clamp(1.6rem, 6vw, 2.4rem)}
+h2{margin:1rem 0 .6rem;font-size:clamp(1.2rem, 4.5vw, 1.6rem)}
+h3{margin:.8rem 0 .4rem;font-size:clamp(1rem, 4vw, 1.2rem)}
+
+.btn{
+  display:inline-block;
+  padding:14px 18px;
+  border-radius:14px;
+  background:var(--accent);
+  color:#fff;
+  font-weight:700;
+  min-height:44px; /* удобная цель на тач-экранах */
+}
+.btn.secondary{background:var(--accent2);color:#042b1f}
+.btn:active{transform:translateY(1px)}
+
+/* === СЕКЦИИ / ГРИД === */
+.hero{padding:28px 0 20px;display:grid;gap:12px}
 .grid{display:grid;gap:16px}
 .grid.cards{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
-.card{background:#fff;border-radius:16px;padding:16px;box-shadow:0 4px 16px rgba(0,0,0,.06)}
-.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#fff3;backdrop-filter:saturate(180%) blur(10px)}
-progress{width:100%;height:10px}
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 4px 16px rgba(0,0,0,.06)
+}
+
+.small{font-size:.95rem;color:var(--muted)}
 footer{margin-top:48px;padding:24px 0;border-top:1px solid #eee;font-size:.95rem;color:var(--muted)}
-.form input,.form textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #e5e7eb;margin-bottom:10px}
+
+.form input,.form textarea{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
+  margin-bottom:10px
+}
 .form label{font-size:.9rem;color:var(--muted)}
-.small{font-size:.9rem;color:var(--muted)}
-.header-logo{font-weight:900}
+
+/* === КАРТИНКИ-КАВЕРЫ С КРАСИВЫМ КАДРИРОВАНИЕМ === */
+.card-cover{
+  width:100%;
+  aspect-ratio: 16 / 9;   /* на мобилках лучше широкоформат */
+  object-fit:cover;
+  border-radius:12px;
+}
+
+/* === ПРОГРЕСС === */
+progress{width:100%;height:10px}
+
+/* === МОБИЛЬНЫЕ УЛУЧШЕНИЯ === */
+@media (max-width: 640px){
+  .container{padding:16px 12px}
+
+  .nav{
+    flex-direction:column;
+    align-items:stretch;
+    gap:10px;
+  }
+  .nav > div:last-child{ /* блок с кнопкой Пожертвовать */
+    display:flex;
+    justify-content:stretch;
+  }
+  .nav .btn{width:100%;text-align:center}
+
+  .hero{
+    padding:20px 0 12px;
+  }
+
+  .grid.cards{
+    grid-template-columns:1fr; /* по одной карточке в ряд */
+  }
+
+  /* Кнопки рядом — превращаем в «стек» */
+  .btn + .btn{margin-top:8px}
+
+  /* Без инлайновых высот, всё резиновое */
+  .card-cover{
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* === НЕБОЛЬШИЕ ТЮНИНГИ ДЛЯ ПЛАНШЕТОВ === */
+@media (min-width: 641px) and (max-width: 960px){
+  .grid.cards{grid-template-columns:repeat(2,1fr)}
+}
